@@ -1,0 +1,74 @@
+<h2>Consulta</h2>
+
+<div *ngIf="!success">
+    <form (submit)="consultar()" #consultaForm="ngForm">
+        <label>ID:
+            <input type="text" id="idValue" name="idValue" required 
+            [(ngModel)]="empleado.id" min="0" #idValue="ngModel"/>
+            
+            <span *ngIf="(idValue.dirty || idValue.touched) && idValue.invalid">
+                El ID es obligatorio
+            </span>
+        </label>
+        
+        <button type="submit" [disabled]="!consultaForm.form.valid"> Consultar </button>
+    </form>
+</div>
+
+<div *ngIf="success">
+
+    <p>Empleado</p>
+    <p>ID: {{empleado.id }}</p>
+    <p>Nombre: {{empleado.employee_name}}</p>
+    <p>Salario: {{empleado.employee_salary}}</p>
+    <p>Edad: {{empleado.employee_age}}</p>
+    <p>Imagem: {{empleado.profile_image}}</p>
+
+    <form (submit)="calcularIPC()" #IPCForm="ngForm">
+        <label>IPC:
+            <input type="text" id="ipc" name="ipc" required [(ngModel)]="ipc" #IPC="ngModel">
+            
+            <span *ngIf="(IPC.dirty || IPC.touched) && IPC.invalid">
+                El IPC es obligatorio
+            </span>
+        </label>
+        <button type="submit" [disabled]="!IPCForm.form.valid"> Calcular </button>
+    </form>
+
+    <p>IPC result: {{resultSalary}}</p>
+
+    <br/>
+    <button (click)="limpiar()"> Limpiar </button>
+</div>
+
+
+
+<!--
+
+
+    <div>
+        <p>Consulta</p>
+        <form (ngSubmit)="consultar()" [formGroup]="formStructure">
+            <label>IPC:
+                <input type="text" formControlName="ipc">
+            </label>
+            <br/>
+            <label>ID:
+                <input type="text" formControlName="idValue" required 
+                [(ngModel)]="empleado.id" #idValue="ngModel" validaConsulta />
+                
+                <span *ngIf="!formStructure.valid">
+                    El ID es obligatorio
+                </span>
+                <span *ngIf="idValue.errors.required">
+                    CRIAR DIRETIVA
+                </span>
+            </label>
+            <p>
+                Form Status: {{ formStructure.status }}
+            </p>
+            
+            <button type="submit" [disabled]="!formStructure.valid"> Consultar </button>
+        </form>
+    </div>
+-->

@@ -1,0 +1,29 @@
+
+<h2>Sesion Listado de empleados</h2>
+<div *ngIf="!check">
+    <button (click)="showListado()">Show Listado</button>
+</div>
+
+
+<div *ngIf="check">
+    <button (click)="hideListado()">Hide Listado</button>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Salario</th>
+            <th>Edad</th>
+            <th>Profile Image</th>
+        </tr> 
+        <p>{{listado}}</p>
+        <div *ngFor ="let child of listado">
+            <tr>
+                <th>{{child.id}}</th>
+                <th>{{child.employee_name}}</th>
+                <th>{{child.employee_salary}}</th>
+                <th>{{child.employee_age}}</th>
+               <th><img class="empProfileIMG" src="{{child.profile_image}}" alt="Profile Image"/> </th>
+               </tr>
+        </div>
+    </table>
+</div>
